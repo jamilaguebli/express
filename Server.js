@@ -9,7 +9,7 @@ const checkWorkingHours = (req, res, next) => {
   const hour = date.getHours();
 
 
-  if (day >= 1 && day <= 5 && hour >= 9 && hour < 17) {
+  if (day >= 1 && day <= 8 ) {
     next();
   } else {
     res.send('The website is only available during working hours (Monday to Friday, from 9 to 17).');
@@ -21,15 +21,15 @@ app.use(express.static('public'));
 
 // Routes
 app.get('/', checkWorkingHours, (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
+  res.sendFile(__dirname + '/index.html');
 });
 
 app.get('/services', checkWorkingHours, (req, res) => {
-  res.sendFile(__dirname + '/public/services.html');
+  res.sendFile(__dirname + '/services.html');
 });
 
 app.get('/contact', checkWorkingHours, (req, res) => {
-  res.sendFile(__dirname + '/public/contact.html');
+  res.sendFile(__dirname + '/contact.html');
 });
 
 // Start the server
